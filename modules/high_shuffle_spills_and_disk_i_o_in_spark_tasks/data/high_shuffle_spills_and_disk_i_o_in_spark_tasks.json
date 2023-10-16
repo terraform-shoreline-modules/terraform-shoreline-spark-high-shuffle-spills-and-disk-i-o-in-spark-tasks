@@ -3,19 +3,11 @@
   "description": "This incident type refers to a situation where Spark tasks are experiencing high shuffle spills and disk I/O. Shuffle spills occur when the amount of data being shuffled is larger than the available memory, causing it to spill over to disk. High disk I/O can cause performance issues and slow down the Spark job. The incident requires optimization of shuffle operations and reduction of spills to improve the performance of the Spark tasks.",
   "params": [
     {
-      "name": "EXECUTOR_ID",
-      "value": ""
-    },
-    {
       "name": "LOG_FILE_PATH",
       "value": ""
     },
     {
-      "name": "CONTAINER_ID",
-      "value": ""
-    },
-    {
-      "name": "NAME_OF_SPARK_APPLICATION",
+      "name": "EXECUTOR_ID",
       "value": ""
     },
     {
@@ -28,6 +20,14 @@
     },
     {
       "name": "JOB_ID",
+      "value": ""
+    },
+    {
+      "name": "CONTAINER_ID",
+      "value": ""
+    },
+    {
+      "name": "NAME_OF_SPARK_APPLICATION",
       "value": ""
     },
     {
@@ -192,7 +192,7 @@
       "name": "cell_25",
       "type": "OP_LANG",
       "enabled": true,
-      "content": "host | host_name=$HOST_NAME | invoke_optimal_partitions($NAME_OF_SPARK_APPLICATION, $NUMBER_OF_PARTITIONS)"
+      "content": "host | host_name=$HOST_NAME | invoke_optimize_partitions($NUMBER_OF_PARTITIONS, $NAME_OF_SPARK_APPLICATION)"
     },
     {
       "name": "cell_26",
@@ -204,7 +204,7 @@
       "name": "cell_27",
       "type": "OP_LANG",
       "enabled": true,
-      "content": "host | host_name=$HOST_NAME | invoke_update_spark_partition_settings($NAME_OF_SPARK_APPLICATION, $NUMBER_OF_PARTITIONS)"
+      "content": "host | host_name=$HOST_NAME | invoke_update_spark_partitions($NUMBER_OF_PARTITIONS, $NAME_OF_SPARK_APPLICATION)"
     }
   ]
 }
